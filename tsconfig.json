@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "noEmit": true,
+    "incremental": true,
+    "module": "esnext",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+  "include": [
+    "next-env.d.ts",
+    ".next/types/**/*.ts",
+    "**/*.ts",
+    "**/*.tsx"
+, "src/app/selfmade/SLIDEBAR.JSX", "src/app/Login/page.jsx", "src/app/templates/news-card.jsx", "src/app/pruser/editprofile/page.tsx", "src/app/api/profile/route.js", "src/app/slidebar/Createpost.jsx", "src/app/slidebar/Createpost.jsx", "src/app/slidebar/Createpost.jsx", "src/app/pruser/Createpost.jsx", "src/app/pruser/profile/page.jsx", "src/app/pruser/profile/page.jsx", "src/app/pruser/profile/page.jsx", "src/app/pruser/profile/page.jsx", "src/app/pruser/profile/page.jsx"  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

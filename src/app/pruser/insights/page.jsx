@@ -1,4 +1,3 @@
-// /src/app/pruser/insights/page.jsx (Server Component)
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 

@@ -11,27 +11,6 @@ import { useModelContext } from "../../context/Context";
 import LAHEAD from "../../slidebar/LAHEAD";
 import Footer from "../../slidebar/FOOTER";
 import { motion } from "framer-motion";
-import { Line } from "react-chartjs-2";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
-
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
 
 export default function InsightsPageComponent() {
   // Prevent any execution on the server/build time.
@@ -104,35 +83,6 @@ export default function InsightsPageComponent() {
       </motion.div>
     );
 
-  const chartData = {
-    labels: ["Daily", "Weekly", "Monthly", "Total"],
-    datasets: [
-      {
-        label: "Profile Views",
-        data: visitStats
-          ? [
-              visitStats.dailyVisits / 2,
-              visitStats.weeklyVisits / 2,
-              visitStats.monthlyVisits / 2,
-              visitStats.totalVisits / 2,
-            ]
-          : [],
-        fill: false,
-        backgroundColor: "rgb(75, 192, 192)",
-        borderColor: "rgba(75, 192, 192, 0.2)",
-      },
-    ],
-  };
-
-  const chartOptions = {
-    responsive: true,
-    plugins: {
-      legend: { position: "top" },
-      title: { display: true, text: "Profile View Statistics" },
-    },
-    scales: { y: { beginAtZero: true } },
-  };
-
   return (
     <div className="bg-gray-900 text-white min-h-screen">
       <LAHEAD />
@@ -140,7 +90,7 @@ export default function InsightsPageComponent() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="container flex-col mx-auto px-4 py-8"
+        className="container mx-auto px-4 py-8"
       >
         <h1 className="text-4xl font-bold mb-6">Lawyer Profile</h1>
         <div className="bg-gray-800 rounded-lg p-6 mb-8">
@@ -150,32 +100,22 @@ export default function InsightsPageComponent() {
 
         <h2 className="text-3xl font-semibold mt-10 mb-6">Profile Insights</h2>
         {visitStats ? (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8"
-            >
-              <InsightCard title="Total Visits" value={visitStats.totalVisits / 2} />
-              <InsightCard title="Monthly Visits" value={visitStats.monthlyVisits / 2} />
-              <InsightCard title="Weekly Visits" value={visitStats.weeklyVisits / 2} />
-              <InsightCard title="Daily Visits" value={visitStats.dailyVisits / 2} />
-              <InsightCard
-                title="Last Visit"
-                value={new Date(visitStats.lastVisit).toLocaleString()}
-                fullWidth
-              />
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="bg-gray-800 rounded-lg p-6"
-            >
-              <Line data={chartData} options={chartOptions} />
-            </motion.div>
-          </>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8"
+          >
+            <InsightCard title="Total Visits" value={visitStats.totalVisits / 2} />
+            <InsightCard title="Monthly Visits" value={visitStats.monthlyVisits / 2} />
+            <InsightCard title="Weekly Visits" value={visitStats.weeklyVisits / 2} />
+            <InsightCard title="Daily Visits" value={visitStats.dailyVisits / 2} />
+            <InsightCard
+              title="Last Visit"
+              value={new Date(visitStats.lastVisit).toLocaleString()}
+              fullWidth
+            />
+          </motion.div>
         ) : (
           <p className="text-xl text-gray-400">Loading insights...</p>
         )}

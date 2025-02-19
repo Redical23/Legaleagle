@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
      setShowModels(! isModelOpen); // Toggle the visibility of Models component
    };
  
-   fetch("/api/socket").catch((err) => console.error("Socket setup error:", err));
+  
   return (
     <html lang="en">
 

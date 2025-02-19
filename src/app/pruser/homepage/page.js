@@ -1,5 +1,8 @@
 "use client";
-import React, { useState, useEffect } from "react";
+export const dynamic = "force-dynamic"; // Disable static prerendering
+export const revalidate = 0; // No caching – always fetch at runtime
+
+import React, { Suspense, useState, useEffect } from "react";
 import { useModelContext } from "../../context/Context";
 import LAHEAD from "../../slidebar/LAHEAD";
 import LAWYERSSTEMP from "../../templates/LAWYERSTEMP";
@@ -8,7 +11,7 @@ import { useSearchParams } from "next/navigation";
 import Footer from "../../slidebar/FOOTER";
 import { motion, AnimatePresence } from "framer-motion";
 
-const Page = () => {
+function HomepageContent() {
   const [users, setUsers] = useState([]);
   const searchParams = useSearchParams();
   const [page, setPage] = useState(1);
@@ -18,7 +21,7 @@ const Page = () => {
   const filterFromUrl = searchParams.get("filter") || "";
   const [isHydrated, setIsHydrated] = useState(false);
 
-  // Ensure the page is fully hydrated before rendering content
+  // Wait for hydration before rendering client-only data
   useEffect(() => {
     setIsHydrated(true);
   }, []);
@@ -62,13 +65,12 @@ const Page = () => {
   }, [filterFromUrl]);
 
   const usersPerPage = 9;
-  const totalPages = Math.ceil(filteredUsers.length / usersPerPage);
   const startIndex = (page - 1) * usersPerPage;
   const selectedUsers = filteredUsers.slice(startIndex, startIndex + usersPerPage);
 
   const filters = ["All", "Corporate Law", "Immigration Law", "Family Law", "Criminal Law"];
 
-  // Prevent rendering until hydration is complete
+  // Don't render content until hydration is complete
   if (!isHydrated) return null;
 
   return (
@@ -121,6 +123,12 @@ const Page = () => {
       <Footer />
     </div>
   );
-};
+}
 
-export default Page;
+export default function Page() {
+  return (
+    <Suspense fallback={<div>Loading homepage...</div>}>
+      <HomepageContent />
+    </Suspense>
+  );
+}

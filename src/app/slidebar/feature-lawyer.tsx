@@ -40,7 +40,7 @@ export default function FeaturedLawyer() {
       <div className="md:flex items-center">
         <div className="md:flex-shrink-0 relative w-full md:w-72 h-72 rounded-lg overflow-hidden shadow-lg">
           <Image
-            src={currentLawyer.image || "/fallback.jpg"}
+            src={currentLawyer.avatar || "/fallback.jpg"}
             alt={`${currentLawyer.name}'s profile`}
             layout="fill"
             objectFit="cover"

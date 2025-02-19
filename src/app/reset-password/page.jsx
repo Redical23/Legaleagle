@@ -1,9 +1,8 @@
 "use client";
-
-import { useState } from "react";
+import React, { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
-const ResetPassword = () => {
+function ResetPasswordContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
@@ -19,24 +18,24 @@ const ResetPassword = () => {
       setMessage("Passwords do not match.");
       return;
     }
-  
+
     console.log("Token being sent:", token); // Debug log
-  
+
     setIsLoading(true);
     const res = await fetch("/api/reset-password", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ token, password }),
     });
-  
+
     const data = await res.json();
     console.log("Response:", data); // Debug response
-  
+
     setIsLoading(false);
     setMessage(data.message);
     if (res.ok) setTimeout(() => router.push("/Login"), 2000);
   };
-  
+
   return (
     <div className="flex min-h-screen items-center justify-center">
       <div className="w-full max-w-md p-6 bg-white rounded-md shadow-md">
@@ -71,11 +70,18 @@ const ResetPassword = () => {
           </button>
         </form>
 
-        {message && <p className="mt-2 text-center text-sm text-green-600">{message}</p>}
+        {message && (
+          <p className="mt-2 text-center text-sm text-green-600">{message}</p>
+        )}
       </div>
     </div>
   );
-};
+}
 
-export default ResetPassword;
-
+export default function ResetPassword() {
+  return (
+    <Suspense fallback={<div>Loading reset password page...</div>}>
+      <ResetPasswordContent />
+    </Suspense>
+  );
+}

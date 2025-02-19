@@ -1,4 +1,6 @@
 "use client";
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -28,7 +30,7 @@ ChartJS.register(
   Legend
 );
 
-export default function LawyerProfilePage() {
+export default function InsightsPage() {
   const { email } = useModelContext();
   const [user, setUser] = useState(null);
   const [visitStats, setVisitStats] = useState(null);
@@ -72,25 +74,27 @@ export default function LawyerProfilePage() {
     fetchVisitStats();
   }, [decodedEmail]);
 
-  if (error) return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      className="flex items-center justify-center min-h-screen bg-gray-900 text-white"
-    >
-      Error: {error}
-    </motion.div>
-  );
+  if (error)
+    return (
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="flex items-center justify-center min-h-screen bg-gray-900 text-white"
+      >
+        Error: {error}
+      </motion.div>
+    );
 
-  if (!user) return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      className="flex items-center justify-center min-h-screen bg-gray-900 text-white"
-    >
-      Loading...
-    </motion.div>
-  );
+  if (!user)
+    return (
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="flex items-center justify-center min-h-screen bg-gray-900 text-white"
+      >
+        Loading...
+      </motion.div>
+    );
 
   const chartData = {
     labels: ['Daily', 'Weekly', 'Monthly', 'Total'],

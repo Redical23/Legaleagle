@@ -42,8 +42,8 @@ const h8 = "/h8.png"
     },
     {
       icon: <Wallet className="w-8 h-8" />,
-      title: "Fair & transparent pricing",
-      description: "Talents are paid competitive salaries with utmost price transparency among all three stakeholders.",
+      title: "Fair & Transparent Legal Fees",
+      description: "Our clients receive clear and upfront pricing, ensuring competitive legal fees with full transparency for all parties involved.",
       color: "from-purple-500 to-pink-500"
     },
     {
@@ -54,8 +54,8 @@ const h8 = "/h8.png"
     },
     {
       icon: <UserCog className="w-8 h-8" />,
-      title: "Post-hiring support",
-      description: "Payroll, IT, and admin management are all part of what we do after hiring.",
+      title: "Post-Hiring Legal Assistance",
+      description: "We provide ongoing legal support, ensuring compliance and smooth operations for all stakeholders on our platform.",
       color: "from-rose-500 to-red-500"
     }
   ];
@@ -85,20 +85,20 @@ const h8 = "/h8.png"
       answer: "Hiring remote laywer offers access to a global talent pool, increased flexibility, potential cost savings, and diverse perspectives. It allows client to scale quickly and efficiently without geographical constraints."
     },
     {
-      question: "What kind of talent does properaid provide?",
-      answer: "properaid provides a wide range of laywer, including full-stack developers, front-end and back-end specialists, mobile app developers, data scientists, AI/ML engineers, and more. All our engineers are rigorously screened for technical skills and communication abilities."
+      question: "What kind of lawyers does ProperAid provide?",
+      answer: "ProperAid connects users with a wide range of legal professionals, including corporate lawyers, criminal defense attorneys, intellectual property specialists, contract lawyers, and more. All our lawyers are thoroughly vetted for expertise, experience, and communication skills"
     },
     {
       question: "What other services does properaid offer?",
-      answer: "In addition to individual engineer placement, Turing offers managed team solutions, project-based engagements, and consulting services. We can help with everything from augmenting your existing team to managing entire development projects."
+      answer: "ProperAid not only connects users with lawyers through our chat system but also provides legal news, case references, and internship opportunities posted by users. Our platform ensures seamless access to legal insights and professional growth opportunities"
     },
     {
-      question: "Why should I choose Turing for hiring remote software talent?",
-      answer: "Turing stands out due to our rigorous vetting process, vast talent pool, AI-powered matching, and ongoing support. We ensure you get the right fit for your team, both in terms of technical skills and cultural alignment, saving you time and resources in the hiring process."
+      question: "Why should I choose ProperAid for legal assistance?",
+      answer: "ProperAid stands out with its seamless lawyer connection via chat, access to legal news and case references, and user-posted internship opportunities. Our platform ensures reliable, transparent, and efficient legal support, making it easier to find the right legal expertise when you need it"
     },
     {
-      question: "How much time does it take to hire a remote engineer?",
-      answer: "With Turing, you can typically hire a vetted remote engineer within 3-5 days. Our AI-powered platform and large pool of pre-vetted talent allow us to match you with suitable candidates quickly, significantly reducing the time-to-hire compared to traditional recruiting methods."
+      question: "How long does it take to connect with a lawyer on ProperAid",
+      answer: "With ProperAid, you can connect with a qualified lawyer instantly through our chat system. Our platform ensures quick access to legal professionals, significantly reducing the time spent searching for legal assistance compared to traditional methods."
     }
   ];
 
@@ -124,8 +124,8 @@ const h8 = "/h8.png"
               <span className="text-2xl font-bold">ProperAid</span>
             </div>
             <div className="hidden md:flex space-x-4">
-              <button className="text-white hover:text-gray-300">How It Works</button>
-              <button className="text-white hover:text-gray-300">Practice Areas</button>
+              <button onClick={() => router.push("/termsofservice")} className="text-white hover:text-gray-300">terms and service</button>
+              <button onClick={() => router.push("/privacypolicy")} className="text-white hover:text-gray-300">Privacy policy</button>
               <button  onClick={() => router.push("/about")} className="text-white hover:text-gray-300">About Us</button>
               <button  onClick={() => router.push("/contact")} className="text-white hover:text-gray-300">Contact</button>
             </div>

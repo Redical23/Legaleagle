@@ -38,7 +38,7 @@ export default function FeaturedLawyer() {
   }
 
   const currentLawyer = lawyers[currentIndex];
-
+console.log(currentLawyer,"sd")
   return (
     <div className="bg-gradient-to-br from-[#1E3A8A] to-[#243B55] rounded-lg shadow-lg overflow-hidden p-6">
       <div className="md:flex items-center">
@@ -67,7 +67,9 @@ export default function FeaturedLawyer() {
 
           <div className="mt-6 grid grid-cols-3 gap-4">
             <div className="bg-[#162447] p-4 rounded-lg text-center shadow-md">
-              <div className="text-2xl font-bold text-[#FFD700]">{currentLawyer.Location}</div>
+              <div className="text-2xl font-bold text-[#FFD700]"> {currentLawyer.location && typeof currentLawyer.location === "string" 
+      ? currentLawyer.location 
+      : "Location Not Available"}</div>
               <div className="text-sm text-[#E0E7FF]">Location</div>
             </div>
             <div className="bg-[#162447] p-4 rounded-lg text-center shadow-md">

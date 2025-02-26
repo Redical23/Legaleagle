@@ -12,12 +12,14 @@ const CONSTITUTIONTEMP = ({ constitution }) => {
             <div
               key={constitutionItem?._id || index}
               className="card perspective-1000 cursor-pointer"
+              
               onClick={() => router.push(`/constitutionid/${constitutionItem?._id}`)}
             >
               <div className="card-inner relative w-full h-full transition-all duration-700 transform-style-preserve-3d group">
                 {/* Front Side - Case Details */}
-                <div className="card-front absolute w-full h-full backface-hidden rounded-2xl bg-gradient-to-br from-indigo-500 to-indigo-700 text-white p-6 flex flex-col justify-between transition-all duration-700 group-hover:opacity-0">
+                <div style={{ backgroundImage: 'url("/c1.png")' }} className="card-front absolute w-full h-full backface-hidden rounded-2xl bg-gradient-to-br from-indigo-500 to-indigo-700 text-white p-6 flex flex-col justify-between transition-all duration-700 group-hover:opacity-0">
                   <div className="space-y-4">
+                    
                     <h2 className="text-2xl font-bold">Case Details</h2>
                     <div className="space-y-2">
                       <p className="text-sm truncate">
@@ -43,7 +45,7 @@ const CONSTITUTIONTEMP = ({ constitution }) => {
                 </div>
 
                 {/* Back Side - Parties Involved */}
-                <div className="card-back absolute w-full h-full backface-hidden rounded-2xl bg-gradient-to-br from-orange-500 to-orange-700 text-white p-6 transition-all duration-700 opacity-0 group-hover:opacity-100">
+                <div style={{ backgroundImage: 'url("/c1.png")' }} className="card-back absolute w-full h-full backface-hidden rounded-2xl bg-gradient-to-br from-orange-500 to-orange-700 text-white p-6 transition-all duration-700 opacity-0 group-hover:opacity-100">
                   <div className="space-y-4">
                     <h2 className="text-2xl font-bold">Parties Involved</h2>
                     <div>

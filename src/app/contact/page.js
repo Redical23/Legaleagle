@@ -1,11 +1,23 @@
-import React from 'react'
+import React from "react";
 
-const page = () => {
+const ContactPage = () => {
   return (
-    <div>
-      You may contact us using the information below: Merchant Legal entity name: Rishi Gupta Registered Address: 7 old lashkar line Allahabad UTTAR PRADESH 211003 Telephone No: 9305371779 E-Mail ID: Properaid45@gmail.com
+    <div className="p-6 max-w-xl mx-auto bg-white shadow-lg rounded-lg">
+      <h1 className="text-2xl font-bold mb-4">Contact Us</h1>
+      <p className="mb-2">
+        <strong>Merchant Legal Entity Name:</strong> Rishi Gupta
+      </p>
+      <p className="mb-2">
+        <strong>Registered Address:</strong> 7 Old Lashkar Line, Allahabad, Uttar Pradesh 211003
+      </p>
+      <p className="mb-2">
+        <strong>Telephone No:</strong> <a href="tel:+919305371779" className="text-blue-600">9305371779</a>
+      </p>
+      <p>
+        <strong>Email:</strong> <a href="mailto:Properaid45@gmail.com" className="text-blue-600">Properaid45@gmail.com</a>
+      </p>
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default ContactPage;

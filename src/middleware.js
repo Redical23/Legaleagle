@@ -13,6 +13,10 @@ export async function middleware(req) {
     pathname === '/Login' ||
     pathname === '/Register' ||
     pathname === '/about' ||
+    pathname === '/termsofservice' ||
+    pathname === '/privacypolicy' ||
+    pathname === '/contact' ||
+
     pathname.startsWith('/_next') ||
     pathname.endsWith('.css')
   ) {

@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
   };
   const LAHEAD = dynamic(() => import("./slidebar/LAHEAD"), { ssr: false });
   
-  const shouldShowLAHEAD =  pathname !== "/" && pathname !== "/pruser/setting" && pathname !=="/pruser/editprofile" && pathname !=="/Login"&& pathname !=="/Register"     ;
+  const shouldShowLAHEAD =  pathname !== "/" && pathname !== "/pruser/setting" && pathname !=="/pruser/editprofile" && pathname !=="/Login"&& pathname !=="/Register" && pathname !=="/contact" && pathname !=="/about"&& pathname !=="/privacypolicy"&& pathname !=="/termsofservice"  ;
 
  
   return (

@@ -64,7 +64,7 @@ const newsData2 = await getNewsByCategory(category, excludeId);
 console.log(news,"toyou")
   return (
     <div>
-      <LAHEAD/>
+     
     <div className="min-h-screen bg-[#020B2C] text-white py-8">
       <div className="max-w-7xl mx-auto px-4">
         <Link

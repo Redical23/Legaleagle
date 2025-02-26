@@ -58,7 +58,7 @@ const Footer = () => {
           <motion.div className="text-center md:text-left" variants={itemVariants}>
             <h4 className="text-lg font-semibold text-white mb-2">Practice Areas</h4>
             <nav className="space-y-2">
-              {["Corporate Law", "Intellectual Property", "Civil Litigation", "Criminal Defense", "Family Law"].map(
+              {["Corporate Law",  "Immigration Law", "Criminal Law", "Family Law"].map(
                 (area) => (
                   <motion.button
                     key={area}
@@ -77,18 +77,24 @@ const Footer = () => {
           <motion.div className="text-center md:text-left" variants={itemVariants}>
             <h4 className="text-lg font-semibold text-white mb-2">Quick Links</h4>
             <nav className="space-y-2">
-              {["Find a Lawyer", "About Us", "FAQ", "Terms of Service", "Privacy Policy"].map((link, index) => (
-                <motion.a
-                  key={index}
-                  href={`/${link.replace(/\s+/g, "").toLowerCase()}`}
-                  className="block hover:text-blue-400 transition-colors"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  {link}
-                </motion.a>
-              ))}
-            </nav>
+  {[
+    { name: "Find a Lawyer", path: "/pruser/homepage" },
+    { name: "About Us", path: "/about" },
+    { name: "Terms of Service", path: "/termsofservice" },
+    { name: "Privacy Policy", path: "/privacypolicy" }
+  ].map((link, index) => (
+    <motion.a
+      key={index}
+      href={link.path}
+      className="block hover:text-blue-400 transition-colors"
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+    >
+      {link.name}
+    </motion.a>
+  ))}
+</nav>
+
           </motion.div>
 
           <motion.div className="text-center md:text-left" variants={itemVariants}>

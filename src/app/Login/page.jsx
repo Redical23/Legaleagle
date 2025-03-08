@@ -11,6 +11,8 @@ export default function LoginPage() {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+ 
+   const loge2 = "/c1.png"
 
   const handleInputChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
@@ -45,7 +47,7 @@ export default function LoginPage() {
       <div className="relative hidden w-1/2 lg:block">
         <div className="absolute inset-0 bg-gradient-to-b from-blue-500/20 to-blue-500/10">
           <Image
-            src="/images/traveler.jpg"  // Provide a valid image source here
+            src= {loge2} // Provide a valid image source here
             alt="Traveler overlooking mountains"
             fill
             className="object-cover"
@@ -53,7 +55,7 @@ export default function LoginPage() {
           />
         </div>
         <div className="relative z-10 p-8">
-          <h1 className="text-2xl font-semibold text-white">ProperAid</h1>
+          <h1 className="text-2xl font-semibold text-white">Kanoonikarwayahi</h1>
           <p className="mt-2 text-sm text-white/90">coming soon.</p>
         </div>
       </div>

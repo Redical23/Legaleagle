@@ -173,32 +173,37 @@ const h8 = "/h8.png"
         </div>
       </div>
       <div className='contentdescription'>
-        <div className='box1'>
-          <div className='contentaid'>
-            <div className='content1'>
-              <h1>WHAT IS PROPER AID?</h1>
-              <p>PROPER AID IS A SIDE With its aim of simplifying the recruitment and hiring process for any legal professional, the company enables users to browse an authentic database of lawyers; by expertise, location, and case type. Moreover, detailed lawyer profiles involve qualifications, experience, rating, and reviews. Features include direct communication options available for quick consultations via chatting, calling, or emails. The interface is easily understandable to book appointments for law experts or hire them regarding any specific legal needs as this will ensure a flawless and trustworthy user experience.</p>
-            </div>
-            <div className='image-box1'>
-              <Image src={h7}   width={500} height={300}   className='box1image' alt="" />
-            </div>
-          </div>
-        </div>
-        <div className='box1'>
-          <div className='contentaid'>
-            <div className='image-box1'>
-              <Image src={h6}  width={500} height={200}  className='box1image' alt="" />
-            </div>
-            <div className='content1'>
-              <h1>HOW TO USE IT?</h1>
-              <p>Visit the Homepage: Once logged in, head straight to the homepage where you'll find a curated list of lawyer profiles.
-Find Your Lawyer: Browse through detailed profiles, review their specializations, ratings, and other relevant information to select the lawyer who best fits your needs.
-Initiate a Chat: Click on the chosen lawyer’s profile to start a conversation directly through our built-in chat feature.
-Direct Contact Option: Some lawyers also provide their phone numbers, giving you the option to call them for immediate assistance.</p>
-            </div>
-          </div>
-        </div>
+  <div className='box1 flex flex-col md:flex-row'>
+    <div className='contentaid flex-1'>
+      <div className='content1'>
+        <h1>WHAT IS PROPER AID?</h1>
+        <p>
+          PROPER AID IS A SIDE With its aim of simplifying the recruitment and hiring process for any legal professional, the company enables users to browse an authentic database of lawyers; by expertise, location, and case type. Moreover, detailed lawyer profiles involve qualifications, experience, rating, and reviews. Features include direct communication options available for quick consultations via chatting, calling, or emails. The interface is easily understandable to book appointments for law experts or hire them regarding any specific legal needs as this will ensure a flawless and trustworthy user experience.
+        </p>
       </div>
+      <div className='image-box1 flex-1'>
+        <Image src={h7} width={500} height={300} className='box1image' alt="" />
+      </div>
+    </div>
+  </div>
+
+  <div className='box1 flex flex-col md:flex-row-reverse'>
+    <div className='contentaid flex-1'>
+      <div className='image-box1 flex-1'>
+        <Image src={h6} width={500} height={200} className='box1image' alt="" />
+      </div>
+      <div className='content1'>
+        <h1>HOW TO USE IT?</h1>
+        <p>
+          Visit the Homepage: Once logged in, head straight to the homepage where you'll find a curated list of lawyer profiles.
+          Find Your Lawyer: Browse through detailed profiles, review their specializations, ratings, and other relevant information to select the lawyer who best fits your needs.
+          Initiate a Chat: Click on the chosen lawyer’s profile to start a conversation directly through our built-in chat feature.
+          Direct Contact Option: Some lawyers also provide their phone numbers, giving you the option to call them for immediate assistance.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
       <div className='contenthome'>
         <div className='contentitem'>
           <h2>Features</h2>

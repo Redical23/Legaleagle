@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from 'react';
 import Studentbar from "../../slidebar/studentbar";
-import Studentsec from "../internship/studentsec";
+import DashboardLayout from "../internship/DashboardLayout";
 import Footer from '../../slidebar/FOOTER';
 
 const Page = () => {
@@ -9,12 +9,12 @@ const Page = () => {
 
   return (
     <div>
-
-    <div className="flex">
-      <Studentbar setSelectedSection={setSelectedSection} />
-      <Studentsec selectedSection={selectedSection} />
-    </div>
-    <Footer/>
+      <div >
+      
+        {/* Pass the setSelectedSection as onSelectSection */}
+        <DashboardLayout selectedSection={selectedSection} onSelectSection={setSelectedSection} />
+      </div>
+      <Footer/>
     </div>
   );
 };

@@ -1,30 +1,19 @@
 "use client"
 
 import { useState, useEffect, useCallback } from "react"
+import Image from "next/image"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
-// Updated testimonials with full images
+const s1 = "/in1.JPG"
+
+// Updated testimonials with images from the public folder
 const testimonials = [
   {
-    url: "/placeholder.svg?height=600&width=400",
-    name: "John Doe",
-    position: "Software Engineer",
-    quote:
-      "Technology is best when it brings people together. Innovation distinguishes between a leader and a follower.",
-  },
-  {
-    url: "/placeholder.svg?height=600&width=400",
-    name: "Jane Smith",
+    url: s1,
+    name: "SURYA CHOUDHARY",
     position: "Lawyer",
     quote:
       "Justice is truth in action. The law is not a light for you or any man to see by; the law is not an instrument of any kind.",
-  },
-  {
-    url: "/placeholder.svg?height=600&width=400",
-    name: "Robert Brown",
-    position: "Student",
-    quote:
-      "Education is the most powerful weapon which you can use to change the world. The beautiful thing about learning is that no one can take it away from you.",
   },
 ]
 
@@ -34,11 +23,15 @@ export default function TestimonialCarousel() {
   const [isPaused, setIsPaused] = useState(false)
 
   const nextSlide = useCallback(() => {
-    setCurrentIndex((prevIndex) => (prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1))
+    setCurrentIndex((prevIndex) =>
+      prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
+    )
   }, [])
 
   const prevSlide = useCallback(() => {
-    setCurrentIndex((prevIndex) => (prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1))
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1
+    )
   }, [])
 
   const goToSlide = useCallback((index) => {
@@ -77,6 +70,10 @@ export default function TestimonialCarousel() {
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
+      {/* 
+        Container with a fixed height to maintain a consistent layout.
+        If you remove these height classes, the container will size to its content.
+      */}
       <div className="relative h-[600px] sm:h-[500px] md:h-[400px]">
         {testimonials.map((testimonial, index) => (
           <div
@@ -85,13 +82,17 @@ export default function TestimonialCarousel() {
               ${index === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0"}`}
             aria-hidden={index !== currentIndex}
           >
-            {/* Left side - Full image */}
+            {/* Left side - Image */}
             <div className="w-full md:w-1/2 h-1/2 md:h-full relative overflow-hidden">
-              <img
-                src={testimonial.url || "/placeholder.svg"}
+              <Image
+                src={testimonial.url}
                 alt={testimonial.name}
-                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                fill
+                // "contain" shows the entire image; "cover" would crop it.
+                style={{ objectFit: "contain", objectPosition: "center" }}
+                className="transition-transform duration-700 hover:scale-105"
               />
+              {/* Optional overlay gradient */}
               <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent"></div>
             </div>
 
@@ -101,7 +102,13 @@ export default function TestimonialCarousel() {
               style={{ backgroundColor: "#00103a" }}
             >
               <div className="mb-6">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" className="text-blue-400 opacity-80">
+                <svg
+                  width="48"
+                  height="48"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  className="text-blue-400 opacity-80"
+                >
                   <path
                     d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5 3.871 3.871 0 01-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5 3.871 3.871 0 01-2.748-1.179z"
                     fill="currentColor"
@@ -114,7 +121,9 @@ export default function TestimonialCarousel() {
               </blockquote>
 
               <div className="mt-auto">
-                <h3 className="text-xl sm:text-2xl font-bold text-blue-300">{testimonial.name}</h3>
+                <h3 className="text-xl sm:text-2xl font-bold text-blue-300">
+                  {testimonial.name}
+                </h3>
                 <p className="text-sm uppercase tracking-wider text-blue-400 font-medium mt-1">
                   {testimonial.position}
                 </p>
@@ -147,7 +156,9 @@ export default function TestimonialCarousel() {
               key={index}
               onClick={() => goToSlide(index)}
               className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                index === currentIndex ? "bg-blue-500 w-6" : "bg-white/50 hover:bg-white/80"
+                index === currentIndex
+                  ? "bg-blue-500 w-6"
+                  : "bg-white/50 hover:bg-white/80"
               }`}
               aria-label={`Go to slide ${index + 1}`}
             />
@@ -157,6 +168,3 @@ export default function TestimonialCarousel() {
     </div>
   )
 }
-
-
-

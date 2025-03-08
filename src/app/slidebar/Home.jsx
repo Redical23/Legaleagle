@@ -10,14 +10,14 @@ import { useSession } from 'next-auth/react'
 import ImageSlider from './IMAGESLIDER'
 
 const Home = () => {
-  const loge2 = "/properaidpic.png"
+  const loge2 = "/22.png"
   const h1 = "/profile.png" 
   const h2 = "/Benefit.png"
   const h3 = "/News.png"
   const h4 = "/Intership.png"
   const h5 = "/chat.png"
   const h6 = "/53510.jpg"
-const h7 = "/h7.jpg"
+const h7 = "/H10.png"
 const h8 = "/h8.png"
   const features = [
     {
@@ -83,20 +83,20 @@ const h8 = "/h8.png"
       answer: "Hiring remote laywer offers access to a global talent pool, increased flexibility, potential cost savings, and diverse perspectives. It allows client to scale quickly and efficiently without geographical constraints."
     },
     {
-      question: "What kind of lawyers does ProperAid provide?",
-      answer: "ProperAid connects users with a wide range of legal professionals, including corporate lawyers, criminal defense attorneys, intellectual property specialists, contract lawyers, and more. All our lawyers are thoroughly vetted for expertise, experience, and communication skills"
+      question: "What kind of lawyers does Kanoonikarwayahi provide?",
+      answer: "Kanoonikarwayahi connects users with a wide range of legal professionals, including corporate lawyers, criminal defense attorneys, intellectual property specialists, contract lawyers, and more. All our lawyers are thoroughly vetted for expertise, experience, and communication skills"
     },
     {
-      question: "What other services does properaid offer?",
-      answer: "ProperAid not only connects users with lawyers through our chat system but also provides legal news, case references, and internship opportunities posted by users. Our platform ensures seamless access to legal insights and professional growth opportunities"
+      question: "What other services does Kanoonikarwayahi offer?",
+      answer: "Kanoonikarwayahi not only connects users with lawyers through our chat system but also provides legal news, case references, and internship opportunities posted by users. Our platform ensures seamless access to legal insights and professional growth opportunities"
     },
     {
       question: "Why should I choose ProperAid for legal assistance?",
-      answer: "ProperAid stands out with its seamless lawyer connection via chat, access to legal news and case references, and user-posted internship opportunities. Our platform ensures reliable, transparent, and efficient legal support, making it easier to find the right legal expertise when you need it"
+      answer: "Kanoonikarwayahi stands out with its seamless lawyer connection via chat, access to legal news and case references, and user-posted internship opportunities. Our platform ensures reliable, transparent, and efficient legal support, making it easier to find the right legal expertise when you need it"
     },
     {
-      question: "How long does it take to connect with a lawyer on ProperAid",
-      answer: "With ProperAid, you can connect with a qualified lawyer instantly through our chat system. Our platform ensures quick access to legal professionals, significantly reducing the time spent searching for legal assistance compared to traditional methods."
+      question: "How long does it take to connect with a lawyer on Kanoonikarwayahi",
+      answer: "With Kanoonikarwayahi, you can connect with a qualified lawyer instantly through our chat system. Our platform ensures quick access to legal professionals, significantly reducing the time spent searching for legal assistance compared to traditional methods."
     }
   ];
 
@@ -110,17 +110,20 @@ const h8 = "/h8.png"
     <div>
       <div className="bg-[#00103a] text-white">
         <div className="mx-auto px-4 py-8">
-          <div className="flex justify-between items-center mb-8">
-            <div className="flex items-center space-x-4">
-              <Image
-                src={loge2}
-                alt="LegalConnect Logo"
-                width={50}
-                height={50}
-                className="rounded-full"
-              />
-              <span className="text-2xl font-bold">ProperAid</span>
-            </div>
+          <div className="flex justify-between items-center mb-8  h-24 ">
+          <div className="flex items-center space-x-2">
+  <div className="w-32 md:w-96">
+    <Image
+      src={loge2}
+      alt="LegalConnect Logo"
+      width={500}
+      height={50}
+      className="rounded-full object-contain w-full h-auto"
+    />
+  </div>
+</div>
+
+
             <div className="hidden md:flex space-x-4">
   <button onClick={() => router.push("/termsofservice")} className="text-white hover:text-gray-300">Terms and Service</button>
   <button onClick={() => router.push("/privacypolicy")} className="text-white hover:text-gray-300">Privacy Policy</button>
@@ -176,13 +179,13 @@ const h8 = "/h8.png"
   <div className='box1 flex flex-col md:flex-row'>
     <div className='contentaid flex-1'>
       <div className='content1'>
-        <h1>WHAT IS PROPER AID?</h1>
+        <h1>WHAT IS Kanoonikarwayahi?</h1>
         <p>
-          PROPER AID IS A SIDE With its aim of simplifying the recruitment and hiring process for any legal professional, the company enables users to browse an authentic database of lawyers; by expertise, location, and case type. Moreover, detailed lawyer profiles involve qualifications, experience, rating, and reviews. Features include direct communication options available for quick consultations via chatting, calling, or emails. The interface is easily understandable to book appointments for law experts or hire them regarding any specific legal needs as this will ensure a flawless and trustworthy user experience.
+        Kanoonikarwayahi IS A SIDE With its aim of simplifying the recruitment and hiring process for any legal professional, the company enables users to browse an authentic database of lawyers; by expertise, location, and case type. Moreover, detailed lawyer profiles involve qualifications, experience, rating, and reviews. Features include direct communication options available for quick consultations via chatting, calling, or emails. The interface is easily understandable to book appointments for law experts or hire them regarding any specific legal needs as this will ensure a flawless and trustworthy user experience.
         </p>
       </div>
       <div className='image-box1 flex-1'>
-        <Image src={h7} width={500} height={300} className='box1image' alt="" />
+        <Image src={h7} width={500} height={200} className='box1image' alt="" />
       </div>
     </div>
   </div>
@@ -249,7 +252,7 @@ const h8 = "/h8.png"
             <div className="text-center mb-16">
               <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
                 <h2 className="text-4xl md:text-5xl font-extrabold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-                  With ProperAid, no more hiring on gut feeling or guesswork.
+                  With Kanoonikarwayahi, no more hiring on gut feeling or guesswork.
                 </h2>
                 <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div>
               </motion.div>

@@ -33,9 +33,13 @@ const LAHEAD = () => {
     <header className="bg-gradient-to-r from-[#1E293B] via-[#0F172A] to-[#1E3A8A] text-white shadow-lg py-3">
       <div className="w-full max-w-7xl mx-auto px-6 flex flex-wrap items-center justify-between">
         {/* Logo */}
-        <a href="/pruser/homepage" className="text-3xl font-extrabold text-[#FFB400]">
-          PROPER AID
-        </a>
+        <a
+  href="/pruser/homepage"
+  class="text-3xl font-extrabold bg-gradient-to-r from-yellow-400 to-red-400 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300 ease-in-out shadow-md hover:shadow-lg"
+>
+  KANOONI KARWAYAHI
+</a>
+
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-8">
           <Navigation />

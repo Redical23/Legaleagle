@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 
 const Footer = () => {
   const router = useRouter();
-  const loge2 = "/properaidpic.png"
+  const loge2 = "/22.png"
 
   const handleFilterClick = (filter) => {
     router.push(`/pruser/homepage?filter=${filter}`);
@@ -45,11 +45,11 @@ const Footer = () => {
             <Image
               src={loge2}
               alt="ProperAid Logo"
-              width={105}
-              height={25}
+              width={200}
+              height={86}
               className="mb-3 mx-auto md:mx-0"
             />
-            <h3 className="text-xl font-semibold text-white mb-2">ProperAid</h3>
+            <h3 className="text-xl font-semibold text-white mb-2">Kanoonikarwayahi</h3>
             <p className="mb-3">
               Your trusted partner in legal solutions. Connecting you with top-tier lawyers for all your legal needs.
             </p>
@@ -101,7 +101,7 @@ const Footer = () => {
             <h4 className="text-lg font-semibold text-white mb-2">Contact Us</h4>
             <div className="space-y-2">
               <p className="flex items-center justify-center md:justify-start">
-                <Mail size={18} className="mr-2" /> Properaid45@.com
+                <Mail size={18} className="mr-2" /> Kanoonikarwayahi45@.com
               </p>
               <p className="flex items-center justify-center md:justify-start">
                 <MapPin size={18} className="mr-2" /> Headquarter in Prayagraj
@@ -134,7 +134,7 @@ const Footer = () => {
           className="mt-6 pt-6 border-t border-gray-700 text-center text-gray-400"
           variants={itemVariants}
         >
-          <p>ProperAid is a lawyer referral service. We do not provide legal advice or representation.</p>
+          <p>Kanoonikarwayahi is a lawyer referral service. We do not provide legal advice or representation.</p>
         </motion.div>
       </motion.div>
     </footer>

@@ -11,7 +11,8 @@ import Footer from "../../slidebar/FOOTER";
 import { motion, AnimatePresence } from "framer-motion";
 
 function HomepageContent() {
-  const [users, setUsers] = useState([]);
+  const [allUsers, setAllUsers] = useState([]); // ✅ Store full dataset here
+  const [filteredUsers, setFilteredUsers] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
   const searchParams = useSearchParams();
   const [page, setPage] = useState(1);
@@ -31,38 +32,54 @@ function HomepageContent() {
     setSelectedFilter(filterFromUrl);
   }, [filterFromUrl]);
 
-  // Fetch only the current page with search/filter parameters
+  // Fetch ALL data once (on initial load)
   useEffect(() => {
     if (!isHydrated) return;
-    const queryParams = new URLSearchParams();
-    queryParams.append("page", page);
-    queryParams.append("limit", usersPerPage);
-    if (searchterm && searchterm.length > 2) {
-      queryParams.append("search", searchterm);
-    }
-    if (selectedFilter && selectedFilter !== "All") {
-      queryParams.append("filter", selectedFilter);
-    }
-    fetch(`/api/laywers?${queryParams.toString()}`, { cache: "no-store" })
+
+    fetch(`/api/laywers`, { cache: "no-store" })
       .then((response) => response.json())
       .then((data) => {
-        // Handle different API response structures:
-        const allUsers = data.users || data;
-        // Filter on the client side to include only users with islaywer set to true
-        const lawyers = allUsers.filter((user) => user.islaywer === true);
-        // Sort so that users with subscribe true come first
-        const sortedLawyers = [...lawyers].sort((a, b) => {
-          return (b.subscribe ? 1 : 0) - (a.subscribe ? 1 : 0);
-        });
-        setUsers(sortedLawyers);
-        const totalCount = data.total || sortedLawyers.length;
-        setTotalPages(Math.ceil(totalCount / usersPerPage));
+        const allUsersData = data.users || data;
+        setAllUsers(allUsersData); // ✅ Store all data for filtering
+        setFilteredUsers(allUsersData); // Default to all data on initial load
+        setTotalPages(Math.ceil(allUsersData.length / usersPerPage));
       })
       .catch((error) => console.error("Error fetching users:", error));
-  }, [isHydrated, page, searchterm, selectedFilter]);
+  }, [isHydrated]);
+
+  // 🔎 Filter data based on search term and filter logic
+  useEffect(() => {
+    let filteredResults = [...allUsers];
+
+    // Search Logic
+    if (searchterm) {
+      filteredResults = filteredResults.filter((user) =>
+          user.name?.toLowerCase().includes(searchterm.toLowerCase()) // ✅ Safe optional chaining
+      );
+  }
+  
+
+    // Filter Logic
+    if (selectedFilter && selectedFilter !== "All") {
+      filteredResults = filteredResults.filter(
+        (user) => user.category === selectedFilter
+      );
+    }
+
+    // Only display users with `islaywer === true`
+    const lawyers = filteredResults.filter((user) => user.islaywer === true);
+
+    // Sort so that users with `subscribe: true` appear first
+    const sortedLawyers = [...lawyers].sort((a, b) => {
+      return (b.subscribe ? 1 : 0) - (a.subscribe ? 1 : 0);
+    });
+
+    setFilteredUsers(sortedLawyers);
+    const totalCount = sortedLawyers.length;
+    setTotalPages(Math.ceil(totalCount / usersPerPage));
+  }, [searchterm, selectedFilter, allUsers]);
 
   if (!isHydrated) return null;
-  console.log(users, "home");
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#020B2C] to-[#0D1B4A]">
@@ -111,7 +128,7 @@ function HomepageContent() {
             transition={{ duration: 0.3 }}
             className="mt-8 w-11/12"
           >
-            <LAWYERSSTEMP users={users} />
+            <LAWYERSSTEMP users={filteredUsers} />
           </motion.div>
         </AnimatePresence>
 

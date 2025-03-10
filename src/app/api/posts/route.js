@@ -1,13 +1,11 @@
 import { NextResponse } from "next/server";
 import dbconnect from "../../lib/dbConnect";
 import mongoose from "mongoose";
-import { type } from "os";
-
-// Define a Mongoose schema
+import { v4 as uuidv4 } from "uuid";
 
 // Define Mongoose schema
 const PostSchema = new mongoose.Schema({
-  id: { type: String, required: true, unique: true }, // ✅ Explicitly saving `id`
+  id: { type: String, required: true, unique: true },  // 🔹 Using UUID for custom ID
   name: { type: String, required: true }, 
   avatar: { type: String, required: true },
   description: { type: String, required: true },
@@ -24,47 +22,57 @@ const PostSchema = new mongoose.Schema({
 
 const Post = mongoose.models.Post || mongoose.model("Post", PostSchema);
 
+// 🔄 Retry logic for duplicate error handling
+async function createPostWithRetry(postData, retries = 3) {
+  try {
+    return await Post.create(postData);
+  } catch (error) {
+    if (error.code === 11000 && retries > 0) {
+      console.log(`Retrying... Attempts left: ${retries - 1}`);
+      postData.id = uuidv4(); // ✅ Generate new UUID for retries
+      return createPostWithRetry(postData, retries - 1);
+    } else {
+      throw error;
+    }
+  }
+}
+
 // POST handler: Create a new post
 export async function POST(req) {
   try {
     await dbconnect();
 
     const body = await req.json();
-    const { id, name, avatar, description, link, location, email } = body; 
+    const { id, name, avatar, description, link, location, email } = body;
 
-    if (!id || !description) {
+    // 🚨 Input validation
+    if (!description || !email || !name || !avatar) {
       return NextResponse.json(
-        { success: false, message: "ID and description are required" },
+        { success: false, message: "Required fields are missing" },
         { status: 400 }
       );
     }
 
-    if (!email || !name || !avatar) {
-      return NextResponse.json(
-        { success: false, message: "User information is missing" },
-        { status: 400 }
-      );
-    }
-
- 
-
-    // ✅ Create a new post with the given `id`
-    const newPost = await Post.create({
-      id,  // ✅ Now storing the `id` from request body
-      name,
-      avatar,
-      description,
-      link,
-      location: location || "To be specified",
-      company: "Your Company",
-      position: "New Internship",
-      postedAt: new Date(),
-      companyLogo:
-        "https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&q=80&w=100",
-      likes: 0,
-      comments: 0,
-      email,
-    });
+    // ✅ Upsert to prevent duplicates
+    const newPost = await Post.findOneAndUpdate(
+      { id: id || uuidv4() }, // Use provided `id` or generate a new UUID
+      {
+        name,
+        avatar,
+        description,
+        link,
+        location: location || "To be specified",
+        company: "Your Company",
+        position: "New Internship",
+        postedAt: new Date(),
+        companyLogo:
+          "https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&q=80&w=100",
+        likes: 0,
+        comments: 0,
+        email,
+      },
+      { upsert: true, new: true }
+    );
 
     return NextResponse.json({
       success: true,
@@ -73,13 +81,13 @@ export async function POST(req) {
     });
   } catch (error) {
     console.error("❌ Error in POST /api/posts:", error);
+
     return NextResponse.json(
       { success: false, message: error.message },
       { status: 500 }
     );
   }
 }
-
 
 // GET handler: Fetch all posts
 export async function GET() {
@@ -107,31 +115,35 @@ export async function DELETE(req) {
   await dbconnect();
 
   try {
-    const { id } = await req.json();
+    const { id } = await req.json();  // ✅ Expect `id` from the request body
     console.log("Delete request for:", id);
 
     if (!id) {
-      return new Response(JSON.stringify({ error: "Email is required." }), { 
-        status: 400, headers: { "Content-Type": "application/json" } 
+      return new Response(JSON.stringify({ error: "ID is required." }), {
+        status: 400,
+        headers: { "Content-Type": "application/json" },
       });
     }
 
-    // Find and delete the user
-    const deletedUser = await Post.findOneAndDelete({ _id: new mongoose.Types.ObjectId(id) });
+    // ✅ Correct Deletion Using `id`
+    const deletedPost = await Post.findOneAndDelete({ id });
 
-    if (!deletedUser) {
-      return new Response(JSON.stringify({ error: "User not found." }), { 
-        status: 404, headers: { "Content-Type": "application/json" } 
+    if (!deletedPost) {
+      return new Response(JSON.stringify({ error: "Post not found." }), {
+        status: 404,
+        headers: { "Content-Type": "application/json" },
       });
     }
 
-    return new Response(JSON.stringify({ message: "Account deleted successfully." }), { 
-      status: 200, headers: { "Content-Type": "application/json" } 
+    return new Response(JSON.stringify({ message: "Post deleted successfully." }), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
     });
   } catch (error) {
-    console.error("Error deleting account:", error);
-    return new Response(JSON.stringify({ error: "Failed to delete account." }), { 
-      status: 500, headers: { "Content-Type": "application/json" } 
+    console.error("Error deleting post:", error);
+    return new Response(JSON.stringify({ error: "Failed to delete post." }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
     });
   }
 }

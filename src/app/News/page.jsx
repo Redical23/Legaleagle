@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState, useEffect } from 'react';
 import LAHEAD from '../slidebar/LAHEAD';
 import NEWSTEMP from '../templates/NEWSTEMP';
@@ -10,23 +10,26 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const Page = () => {
   const [newss, setNewss] = useState([]);
-  const [page, setPage] = useState(1);
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [page, setPage] = useState(1);
   const { searchterm } = useModelContext();
 
   useEffect(() => {
-    fetch('/api/news')
-      .then((response) => response.json())
-      .then((data) => {
+    async function fetchData() {
+      try {
+        const response = await fetch('/api/news');
+        const data = await response.json();
         setNewss(data);
         setFilteredUsers(data);
-        setIsLoading(false);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error('Error fetching news:', error);
+      } finally {
         setIsLoading(false);
-      });
+      }
+    }
+
+    fetchData();
   }, []);
 
   useEffect(() => {
@@ -44,19 +47,18 @@ const Page = () => {
   const usersPerPage = 9;
   const totalPages = Math.ceil(filteredUsers.length / usersPerPage);
   const startIndex = (page - 1) * usersPerPage;
-  const selectedUsers = filteredUsers.slice(startIndex, startIndex + usersPerPage);
+  const selectedUsers = Array.isArray(filteredUsers)
+    ? filteredUsers.slice(startIndex, startIndex + usersPerPage)
+    : [];
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#020B2C] to-[#0D1B4A]">
- 
-
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
         className="container flex-col mx-auto px-4 py-8"
       >
-        {/* ✅ Ensure FeaturedArticle is inside a div */}
         <div className="relative z-10 w-full h-auto">
           <FeaturedArticle />
         </div>
@@ -112,7 +114,7 @@ const Page = () => {
           </motion.div>
         )}
       </motion.div>
-      
+
       <Footer />
     </div>
   );

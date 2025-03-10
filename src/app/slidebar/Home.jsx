@@ -112,7 +112,7 @@ const h8 = "/h8.png"
         <div className="mx-auto px-4 py-8">
           <div className="flex justify-between items-center mb-8  h-24 ">
           <div className="flex items-center space-x-2">
-  <div className="w-32 md:w-96">
+  <div className="w-100 md:w-96">
     <Image
       src={loge2}
       alt="LegalConnect Logo"

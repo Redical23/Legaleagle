@@ -28,8 +28,9 @@ export default function FeaturedLawyer() {
     if (lawyers.length > 0) {
       const timer = setInterval(() => {
         setCurrentIndex((prevIndex) => (prevIndex + 1) % lawyers.length);
-      }, 5000);
-      return () => clearInterval(timer);
+      }, 12 * 60 * 60 * 1000); // ✅ 12 hours in milliseconds
+  
+      return () => clearInterval(timer); // Clean up on unmount
     }
   }, [lawyers]);
 

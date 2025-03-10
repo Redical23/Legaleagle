@@ -1,43 +1,49 @@
-import { MongoClient, ObjectId } from 'mongodb';
+"use client";
+import React, {use, useState, useEffect } from 'react';
 import LAHEAD from '../../slidebar/LAHEAD';
 import { ArrowLeft, Clock, Calendar, Share2, Bookmark, ThumbsUp } from 'lucide-react';
 import Image from 'next/image';
+import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { RelatedArticle } from '../../slidebar/RelatedArticleProps';
-import ShareBookmarkButtons from "../../slidebar/ShareBookmarkButtons"
+import ShareBookmarkButtons from "../../slidebar/ShareBookmarkButtons";
 import Footer from '../../slidebar/FOOTER';
-async function getUserData(id) {
-  const client = await MongoClient.connect(process.env.MONGODB_URI);
-  const db = client.db();
-  const user = await db.collection('news').findOne({ _id: new ObjectId(id) });
 
-  client.close();
-  return user;
-}
+export default function LawyerProfilePage({ params }) {
 
-async function getNewsByCategory(category, excludeId) {
-  const client = await MongoClient.connect(process.env.MONGODB_URI);
-  const db = client.db();
+  const unwrappedParams = use(params); // ✅ Correctly unwrap params
+  const { news } = unwrappedParams;
+  const [newsData, setNewsData] = useState(null);
+  const [newsData2, setNewsData2] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const query = { 
-    category, 
-    _id: { $ne: new ObjectId(excludeId) }, // Exclude the given document
-    feature: { $ne: true } // Exclude featured articles
-  };
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch(`/api/news?id=${news}`);
+        const userData = await response.json();
+        setNewsData(userData);
 
-  const news = await db.collection("news")
-    .find(query)
-    .limit(2) // Limit to 4 articles
-    .toArray();
+        if (userData?.category) {
+          const relatedResponse = await fetch(
+            `/api/news?category=${userData.category}&excludeId=${news}`
+          );
+          const relatedArticles = await relatedResponse.json();
+          setNewsData2(relatedArticles);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
 
-  client.close();
-  return news;
-}
+    fetchData();
+  }, [news]);
 
-
-export default async function LawyerProfilePage({ params }) {
-  const { news } = params;
-  const newsData = await getUserData(news);
+  if (loading) {
+    return <div className="min-h-screen bg-[#020B2C] text-white p-6">Loading...</div>;
+  }
 
   if (!newsData) {
     return (
@@ -59,90 +65,74 @@ export default async function LawyerProfilePage({ params }) {
     readTime = "N/A",
     role = "Unknown role",
   } = newsData;
-  const excludeId = news
-const newsData2 = await getNewsByCategory(category, excludeId);
-console.log(news,"toyou")
+
   return (
     <div>
-     
-    <div className="min-h-screen bg-[#020B2C] text-white py-8">
-      <div className="max-w-7xl mx-auto px-4">
-        <Link
-          href="/News"
-          className="inline-flex items-center text-blue-400 hover:text-blue-300 mb-6 group transition-colors"
+      <div className="min-h-screen bg-[#020B2C] text-white py-8">
+        <div className="max-w-7xl mx-auto px-4">
+          <Link
+            href="/News"
+            className="inline-flex items-center text-blue-400 hover:text-blue-300 mb-6 group transition-colors"
           >
-          <ArrowLeft className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1" />
-          Back to News
-        </Link>
+            <ArrowLeft className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1" />
+            Back to News
+          </Link>
 
-        <article className="bg-white/5 backdrop-blur rounded-xl overflow-hidden">
-          <div className="relative h-[400px] w-full">
-            <Image
-              src={image}
-              alt={headline}
-              fill
-              className="object-cover"
-              priority
-              />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#020B2C] to-transparent" />
-          </div>
-          
-          <div className="relative -mt-32 p-6 sm:p-8 lg:p-12">
-            <div className="flex flex-wrap items-center gap-4 mb-4">
-              <div className="flex items-center gap-2 text-gray-400">
-                <Clock className="w-4 h-4" />
-                <span>{readTime}</span>
-              </div>
-              <div className="flex items-center gap-2 text-gray-400">
-                <Calendar className="w-4 h-4" />
-                <span>{date}</span>
-              </div>
+          <article className="bg-white/5 backdrop-blur rounded-xl overflow-hidden">
+            <div className="relative h-[400px] w-full">
+              <Image src={image} alt={headline} fill className="object-cover" priority />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#020B2C] to-transparent" />
             </div>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-white">{headline}</h1>
-
-            {image2 && (
-              <div className="relative h-[300px] mb-6 rounded-lg overflow-hidden">
-                <Image
-                  src={image2}
-                  alt="Article detail"
-                  fill
-                  className="object-cover"
-                  />
-              </div>
-            )}
-
-            <p className="text-lg text-gray-300 mb-8">{description}</p>
-
-            <div className="flex items-center justify-between mb-8 pb-8 border-b border-white/10">
-              <div className="flex items-center gap-4">
-                <div>
-                  <div className="font-semibold text-white">{role}</div>
-                  <div className="text-sm text-gray-400">{date}</div>
+            <div className="relative -mt-32 p-6 sm:p-8 lg:p-12">
+              <div className="flex flex-wrap items-center gap-4 mb-4">
+                <div className="flex items-center gap-2 text-gray-400">
+                  <Clock className="w-4 h-4" />
+                  <span>{readTime}</span>
+                </div>
+                <div className="flex items-center gap-2 text-gray-400">
+                  <Calendar className="w-4 h-4" />
+                  <span>{date}</span>
                 </div>
               </div>
-              <div className="flex items-center gap-4">
-              <ShareBookmarkButtons newsId={news} />
-              
+
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-white">{headline}</h1>
+
+              {image2 && (
+                <div className="relative h-[300px] mb-6 rounded-lg overflow-hidden">
+                  <Image src={image2} alt="Article detail" fill className="object-cover" />
+                </div>
+              )}
+
+              <p className="text-lg text-gray-300 mb-8">{description}</p>
+
+              <div className="flex items-center justify-between mb-8 pb-8 border-b border-white/10">
+                <div className="flex items-center gap-4">
+                  <div>
+                    <div className="font-semibold text-white">{role}</div>
+                    <div className="text-sm text-gray-400">{date}</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4">
+                  <ShareBookmarkButtons newsId={news} />
+                </div>
+              </div>
+
+              <div className="prose prose-invert max-w-none">
+                <div dangerouslySetInnerHTML={{ __html: content }} />
+              </div>
+
+              <div className="mt-12">
+                <h2 className="text-2xl font-semibold mb-6">Related Articles</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <RelatedArticle articles={newsData2} />
+                </div>
               </div>
             </div>
-
-            <div className="prose prose-invert max-w-none">
-              <div dangerouslySetInnerHTML={{ __html: content }} />
-            </div>
-
-            <div className="mt-12">
-              <h2 className="text-2xl font-semibold mb-6">Related Articles</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {/* Add related articles here */}
-                <RelatedArticle articles={newsData2} />
-              </div>
-            </div>
-          </div>
-        </article>
+          </article>
+        </div>
       </div>
+      <Footer />
     </div>
-     <Footer />
-            </div>
   );
 }

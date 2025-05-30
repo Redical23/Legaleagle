@@ -1,12 +1,13 @@
 import dbConnect from "../../lib/dbConnect";
 import User from "../../models/User";
+import { compressServerImage, isImageTooBig } from "../../utils/serverImageUtils";
 
 export async function PATCH(req) {
   await dbConnect();
 
   try {
-    const { id, name, title, avatar, bio, firm, location, phone, email, education, barAdmissions, areasOfPractice, awards,recentCases ,publications ,charge, yearsexp } = await req.json();
-
+    const { _id, name, title, avatar, bio, firm, location, phone, email, education, barAdmissions, areasOfPractice, awards, recentCases, publications, charge, yearsexp } = await req.json();
+console.log(avatar)
     if (!email) {
       return new Response(JSON.stringify({ error: "Email is required." }), { status: 400, headers: { "Content-Type": "application/json" } });
     }
@@ -16,9 +17,18 @@ export async function PATCH(req) {
       return new Response(JSON.stringify({ error: "User not found." }), { status: 404, headers: { "Content-Type": "application/json" } });
     }
 
+    // Process and compress the avatar if it's a base64 string and too large
+    let processedAvatar = avatar;
+    if (avatar && avatar.startsWith('data:image')) {
+      if (isImageTooBig(avatar, 2)) {
+        processedAvatar = await compressServerImage(avatar, 400, 400, 0.7);
+        console.log("Avatar image compressed on server");
+      }
+    }
+
     user.name = name || user.name;
     user.title = title || user.title;
-    user.avatar = avatar || user.avatar;
+    user.avatar = processedAvatar || user.avatar;
     user.bio = bio || user.bio;
     user.firm = firm || user.firm;
     user.location = location || user.location;
@@ -47,7 +57,6 @@ export async function PATCH(req) {
     return new Response(JSON.stringify({ error: "Failed to update user details." }), { status: 500, headers: { "Content-Type": "application/json" } });
   }
 }
-
 
 
 

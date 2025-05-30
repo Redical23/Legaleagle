@@ -1,0 +1,23 @@
+import { useRouter } from "next/navigation"; // or your custom routing solution
+
+const LanguageSwitcher = ({ lng }) => {
+  const router = useRouter();
+
+  const handleLanguageChange = (newLng) => {
+    // Assuming you are using Next.js router, to change the language
+    router.push(router.pathname, router.asPath, { locale: newLng });
+  };
+
+  return (
+    <div>
+      <select value={lng} onChange={(e) => handleLanguageChange(e.target.value)}>
+        <option value="en">English</option>
+        <option value="fr">Français</option>
+        <option value="es">Español</option>
+        {/* Add more language options as needed */}
+      </select>
+    </div>
+  );
+};
+
+export default LanguageSwitcher;

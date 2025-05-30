@@ -8,11 +8,49 @@
 margin: 10px 0px;
 
 }
+.tuffy-regular {
+  font-family: "Tuffy", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.tuffy-bold {
+  font-family: "Tuffy", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.tuffy-regular-italic {
+  font-family: "Tuffy", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.tuffy-bold-italic {
+  font-family: "Tuffy", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
 .anton-regular {
   font-family: "Anton", serif;
   font-weight: 400;
   font-style: normal;
 }
+/* app/globals.css */
+
+.comic-relief-regular {
+  font-family: "Comic Relief", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.comic-relief-bold {
+  font-family: "Comic Relief", system-ui;
+  font-weight: 700;
+  font-style: normal;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -700,7 +738,7 @@ justify-content: center;
 }
 
 .content1 p {
-  font-size: 1rem;
+  font-size: 1.2rem;
   
   margin-left: 15px;
   margin-bottom: 1.5rem;
@@ -712,7 +750,7 @@ justify-content: center;
 }
 
 .box1image {
-  width: 100%;
+  width: 76%;
   height: auto;
   border-radius: 8px;
 }

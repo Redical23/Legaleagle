@@ -9,6 +9,7 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: [true, "Email is required!"],
       unique: [true, "Email already exists!"],
+      index: true, 
     },
     isOnline: {
       type: String,
@@ -51,6 +52,7 @@ const UserSchema = new mongoose.Schema(
     password: {
       type: String,
       required: [true, "Password is required!"],
+      index: true, 
     },
     // Only bookmark field added here
     bookmarks: {

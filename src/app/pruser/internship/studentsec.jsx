@@ -7,7 +7,7 @@
       <div className="p-4 flex-1">
         {selectedSection === "internship" && <Intership/>}
         {selectedSection === "course" && <Course/>}
-        {selectedSection === "consiling" && <Counseling/>}
+        {selectedSection === "counselling" && <Counseling/>}
       </div>
     );
   };

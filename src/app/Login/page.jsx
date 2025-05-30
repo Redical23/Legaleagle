@@ -33,7 +33,7 @@ export default function LoginPage() {
       } else {
         toast.success("Login successful!");
         router.push(`/pruser/${credentials.email}`);
-      }
+      }   
     } catch (error) {
       toast.error("An error occurred during login.");
     } finally {
@@ -56,7 +56,7 @@ export default function LoginPage() {
         </div>
         <div className="relative z-10 p-8">
           <h1 className="text-2xl font-semibold text-white">Kanoonikarwayahi</h1>
-          <p className="mt-2 text-sm text-white/90">coming soon.</p>
+          
         </div>
       </div>
 

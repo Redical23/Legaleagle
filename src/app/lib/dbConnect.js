@@ -1,32 +1,43 @@
+// lib/dbConnect.js
 import mongoose from "mongoose";
 
-let isConnected = false; // Track if the DB is already connected
+const MONGODB_URI = process.env.MONGODB_URI;
 
-const dbconnect = async () => {
-  if (isConnected) {
-    console.log("✅ Using existing MongoDB connection");
-    return;
+if (!MONGODB_URI) {
+  throw new Error("Please define the MONGODB_URI environment variable inside .env.local");
+}
+
+let cached = global.mongoose;
+
+if (!cached) {
+  cached = global.mongoose = { conn: null, promise: null };
+}
+
+async function dbConnect() {
+  if (cached.conn) {
+    // 🟢 Check if connection is still connected
+    if (mongoose.connection.readyState === 1) {
+      // Connected
+      return cached.conn;
+    } else {
+      // ⚠️ Connection stale, reset
+      cached.conn = null;
+    }
   }
 
-  try {
-    // Log the server's public IP (for MongoDB Atlas whitelisting)
-    const response = await fetch("https://ifconfig.me");
-    const publicIP = await response.text();
-  
+  if (!cached.promise) {
+    const opts = {
+      bufferCommands: false,
+    };
 
-    // Connect to MongoDB
-    const conn = await mongoose.connect(process.env.MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
+    cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
+      console.log("✅ Connected to MongoDB");
+      return mongoose;
     });
-
-    isConnected = conn.connections[0].readyState === 1;
-    console.log("✅ Connected to MongoDB");
-  } catch (error) {
-    console.error("❌ Error connecting to MongoDB:", error.message);
-
-   
   }
-};
 
-export default dbconnect;
+  cached.conn = await cached.promise;
+  return cached.conn;
+}
+
+export default dbConnect;

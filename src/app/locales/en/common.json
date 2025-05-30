@@ -1,0 +1,136 @@
+{
+    "navigation": {
+      "home": "Home",
+      "ca": "Chartered Accountant",
+      "news": "News",
+      "constitution": "Constitution",
+      "student": "Student",
+      "chats": "Chats"
+    },
+    "header": {
+      "title": "KANOONI KARVAHI",
+      "settings": "Settings",
+      "profile": "Profile"
+    },
+    "home": {
+      "hero": {
+        "title": "Find the Right Lawyer for Your Case",
+        "subtitle": "Connect with experienced attorneys in various practice areas.",
+        "searchPlaceholder": "Search by practice area or location",
+        "findLawyers": "Find Lawyers"
+      },
+      "about": {
+        "title": "WHAT IS Kanooni Karwayahi?",
+        "description": "Kanoonikarwayahi IS A SIDE With its aim of simplifying the recruitment and hiring process for any legal professional, the company enables users to browse an authentic database of lawyers; by expertise, location, and case type. Moreover, detailed lawyer profiles involve qualifications, experience, rating, and reviews. Features include direct communication options available for quick consultations via chatting, calling, or emails. The interface is easily understandable to book appointments for law experts or hire them regarding any specific legal needs as this will ensure a flawless and trustworthy user experience."
+      },
+      "howToUse": {
+        "title": "HOW TO USE IT?",
+        "description": "Visit the Homepage: Once logged in, head straight to the homepage where you'll find a curated list of lawyer profiles. \n\nFind Your Lawyer: Browse through detailed profiles, review their specializations, ratings, and other relevant information to select the lawyer who best fits your needs.\n\n Initiate a Chat: Click on the chosen lawyer's profile to start a conversation directly through our built-in chat feature.\n\nDirect Contact Option: Some lawyers also provide their phone numbers, giving you the option to call them for immediate assistance."
+      },
+      "features": {
+        "title": "Features",
+        "hireALawyer": {
+          "title": "Hire a Lawyer:",
+          "description": "feature description: With its aim of simplifying the recruitment and hiring process for any legal professional, the company enables users to browse an authentic database of lawyers by expertise, location, and case type. Moreover, detailed lawyer profiles involve qualifications, experience, rating, and reviews."
+        },
+        "chat": {
+          "title": "Chat:",
+          "description": "Our website aims to provide users with a convenient and reliable way to connect with lawyers. This platform helps users find the right lawyer for their legal matters and communicate with them effortlessly."
+        },
+        "benefits": {
+          "title": "Benefits:",
+          "description": "Saves time and effort. Enables users to connect with lawyers from anywhere. Provides reliable and expert legal assistance. This platform offers users transparent, accessible, and secure legal services through a digital medium."
+        },
+        "news": {
+          "title": "News:",
+          "description": "Our website is designed to serve as a comprehensive platform for lawyers and legal professionals, providing access to all legal news and updates. Benefits: Stay informed with the latest legal news and gain quick access to critical information."
+        },
+        "internship": {
+          "title": "Internship:",
+          "description": "Our website aims to provide a platform for lawyers and law students where young individuals and students can access internship opportunities. This feature is designed to promote professional growth in the legal field."
+        }
+      },
+      "tagline": "With Kanoonikarwayahi, no more hiring on gut feeling or guesswork.",
+      "sponsoredBy": "Sponsored by",
+      "faq": {
+        "title": "Frequently Asked Questions",
+        "subtitle": "Unravel the mysteries of remote hiring with our FAQ",
+        "questions": [
+          {
+            "question": "What are the advantages of hiring remote lawyer?",
+            "answer": "Hiring remote laywer offers access to a global talent pool, increased flexibility, potential cost savings, and diverse perspectives. It allows client to scale quickly and efficiently without geographical constraints."
+          },
+          {
+            "question": "What kind of lawyers does Kanoonikarwayahi provide?",
+            "answer": "Kanoonikarwayahi connects users with a wide range of legal professionals, including corporate lawyers, criminal defense attorneys, intellectual property specialists, contract lawyers, and more. All our lawyers are thoroughly vetted for expertise, experience, and communication skills"
+          },
+          {
+            "question": "What other services does Kanoonikarwayahi offer?",
+            "answer": "Kanoonikarwayahi not only connects users with lawyers through our chat system but also provides legal news, case references, and internship opportunities posted by users. Our platform ensures seamless access to legal insights and professional growth opportunities"
+          },
+          {
+            "question": "Why should I choose ProperAid for legal assistance?",
+            "answer": "Kanoonikarwayahi stands out with its seamless lawyer connection via chat, access to legal news and case references, and user-posted internship opportunities. Our platform ensures reliable, transparent, and efficient legal support, making it easier to find the right legal expertise when you need it"
+          },
+          {
+            "question": "How long does it take to connect with a lawyer on Kanoonikarwayahi",
+            "answer": "With Kanoonikarwayahi, you can connect with a qualified lawyer instantly through our chat system. Our platform ensures quick access to legal professionals, significantly reducing the time spent searching for legal assistance compared to traditional methods."
+          }
+        ]
+      }
+    },
+    "footer": {
+      "description": "Your trusted partner in legal solutions. Connecting you with top-tier lawyers for all your legal needs.",
+      "copyright": "© 2024 ProperAid. All Rights Reserved.",
+      "practiceAreas": {
+        "title": "Practice Areas",
+        "areas": ["Corporate Law", "Immigration Law", "Criminal Law", "Family Law"]
+      },
+      "quickLinks": {
+        "title": "Quick Links",
+        "links": [
+          { "name": "Find a Lawyer", "path": "/pruser/homepage" },
+          { "name": "About Us", "path": "/about" },
+          { "name": "Terms of Service", "path": "/termsofservice" },
+          { "name": "Privacy Policy", "path": "/privacypolicy" }
+        ]
+      },
+      "contact": {
+        "title": "Contact Us",
+        "email": "Kanoonikarwayahi45@.com",
+        "address": "Headquarter in Prayagraj"
+      },
+      "disclaimer": "Kanoonikarwayahi is a lawyer referral service. We do not provide legal advice or representation."
+    },
+    "features": [
+      {
+        "title": "Hire in 48 hours!",
+        "description": "Access a range of portfolios for your selection."
+      },
+      {
+        "title": "Top 3.5% talents",
+        "description": "A robust network of 1M+ talents who are pre-vetted."
+      },
+      {
+        "title": "40% cost savings",
+        "description": "Save on costs for equivalent work compared to your locality."
+      },
+      {
+        "title": "Fair & Transparent Legal Fees",
+        "description": "Our clients receive clear and upfront pricing, ensuring competitive legal fees with full transparency for all parties involved."
+      },
+      {
+        "title": "Works in your local time zone",
+        "description": "Get talents aligned with your schedule and time zone."
+      },
+      {
+        "title": "Post-Hiring Legal Assistance",
+        "description": "We provide ongoing legal support, ensuring compliance and smooth operations for all stakeholders on our platform."
+      }
+    ],
+    "languageSwitcher": {
+      "english": "English",
+      "hindi": "हिंदी"
+    }
+  }
+  

@@ -6,7 +6,8 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import SIGNOUT from "../../signinout/SIGNOUT";
 import { useModelContext } from "../../context/Context";
-
+import LAHEAD from "../../slidebar/LAHEAD";
+import Footer from "../../slidebar/FOOTER";
 const defaultSettingsOptions = [
   { name: "Edit Profile", href: "/pruser/editprofile" },
   { name: "Bookmarks", href: "/pruser/bookmark" },
@@ -141,42 +142,51 @@ export default function SettingsPage() {
   const MotionLink = motion(Link);
 
   return (
+    <>
+    <LAHEAD/>
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      className="min-h-screen flex flex-col items-center justify-center p-6 bg-gray-100"
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 0.5 }}
+    className="min-h-screen flex flex-col items-center justify-center p-6"
+    style={{ backgroundColor: "#00103a" }}
     >
-      <motion.h1 initial={{ y: -20 }} animate={{ y: 0 }} className="text-4xl font-bold mb-8 text-gray-800">
+      <motion.h1 
+        initial={{ y: -20 }} 
+        animate={{ y: 0 }} 
+        className="text-4xl font-bold mb-8 top-1 text-white"
+        >
         ⚙️ Settings
       </motion.h1>
 
       <div className="w-full max-w-2xl space-y-4">
         {settingsOptions.map((option, index) => (
           <motion.div
-            key={option.name}
-            initial={{ x: -20, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ delay: index * 0.1 }}
+          key={option.name}
+          initial={{ x: -20, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ delay: index * 0.1 }}
           >
             {option.name === "Subscription" ? (
               <motion.button
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={() => handleSubscribe("basic")}
-                className="block w-full p-4 rounded-lg bg-blue-600 shadow-md text-center text-lg font-medium transition-colors text-white hover:bg-blue-700"
-                disabled={loading}
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => handleSubscribe("basic")}
+              className="block w-full p-4 rounded-lg bg-blue-600 shadow-md text-center text-lg font-medium transition-colors text-white hover:bg-blue-700"
+              disabled={loading}
               >
                 {loading ? "Processing..." : option.name}
               </motion.button>
             ) : (
               <MotionLink
-                href={option.href}
-                className={`block p-4 rounded-lg shadow-md text-center text-lg font-medium transition-colors ${
-                  pathname === option.href ? "bg-blue-600 text-white" : "bg-white text-gray-800 hover:bg-blue-50"
-                }`}
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.98 }}
+              href={option.href}
+              className={`block p-4 rounded-lg shadow-md text-center text-lg font-medium transition-colors ${
+                pathname === option.href 
+                ? "bg-blue-600 text-white" 
+                : "bg-white/10 text-white hover:bg-white/20"
+              }`}
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.98 }}
               >
                 {option.name}
               </MotionLink>
@@ -187,7 +197,7 @@ export default function SettingsPage() {
           initial={{ x: -20, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ delay: settingsOptions.length * 0.1 }}
-        >
+          >
           <SIGNOUT />
         </motion.div>
         {/* islaywer Toggle Button */}
@@ -195,15 +205,17 @@ export default function SettingsPage() {
           initial={{ x: -20, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ delay: (settingsOptions.length + 1) * 0.1 }}
-        >
+          >
           <button
             onClick={toggleIsLaywer}
             className="block w-full p-4 rounded-lg bg-green-600 shadow-md text-center text-lg font-medium transition-colors text-white hover:bg-green-700"
-          >
+            >
             {isLaywer ? "Deactivate Lawyer Mode" : "Activate Lawyer Mode"}
           </button>
         </motion.div>
       </div>
     </motion.div>
+    <Footer/>
+            </>
   );
 }

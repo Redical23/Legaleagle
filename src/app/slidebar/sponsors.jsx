@@ -5,7 +5,7 @@ import Image from "next/image"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
 const s1 = "/in1.JPG"
-const s = "/p1.JPG"
+const s = "/p1.jpg"
 // Updated testimonials with images from the public folder
 const testimonials = [
   {

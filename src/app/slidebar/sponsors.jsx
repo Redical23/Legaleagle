@@ -5,12 +5,12 @@ import Image from "next/image"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
 const s1 = "/in1.JPG"
-const s = "/23s.JPG"
+const s = "/p1.JPG"
 // Updated testimonials with images from the public folder
 const testimonials = [
   {
     url: s,
-    name: "PRIYA CHOUDHARY",
+    name: "Surya jeet sahani",
     position: "Lawyer",
     quote:
       "Justice is truth in action. The law is not a light for you or any man to see by; the law is not an instrument of any kind.",

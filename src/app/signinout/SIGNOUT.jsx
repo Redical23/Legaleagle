@@ -17,16 +17,15 @@ const Page = () => {
   }
 
   return (
-    <div >
-     
-     
-        <button
-          onClick={() => signOut()}
-          className="bg-red-500 text-white px-4 py-2 rounded-md"
-        >
-          Sign out
-        </button>
-   
+    <div>
+      <button
+        onClick={() =>
+          signOut({ callbackUrl: "https://www.kanoonikarwayahi.com/" })
+        }
+        className="bg-red-500 text-white px-4 py-2 rounded-md"
+      >
+        Sign out
+      </button>
     </div>
   );
 };

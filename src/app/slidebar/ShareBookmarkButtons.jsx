@@ -64,7 +64,7 @@ export default function ShareBookmarkButtons({ newsId }) {
   return (
     <div className="flex items-center gap-4">
       <button onClick={handleShare} className="p-2 hover:bg-white/10 rounded-full transition-colors">
-        <Share2 className="w-5 h-5" />
+        <Share2 className="w-5 h-5 text-white" />
       </button>
       {isCopied && <span className="text-green-400 text-sm">Link copied!</span>}
       <button onClick={handleBookmarkToggle} className="p-2 hover:bg-white/10 rounded-full transition-colors">

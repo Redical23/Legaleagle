@@ -66,7 +66,7 @@ export function InternshipPost({
       }
 
       alert("Post deleted successfully!");
-      router.push("/pruser/student");
+     
     } catch (err) {
       setError(err.message);
     } finally {

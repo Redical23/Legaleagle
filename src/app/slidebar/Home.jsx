@@ -127,7 +127,7 @@ const Home = () => {
   }
 
   return (
-    <div style={globalStyles}>
+    <div suppressHydrationWarning={true}  style={globalStyles}>
       <div className="bg-[#00103a] text-white">
         <div className="mx-auto px-4 py-8">
           <div className="flex justify-between items-center mb-8  h-24 ">
@@ -143,7 +143,7 @@ const Home = () => {
               </div>
             </div>
 
-            <div className="hidden md:flex space-x-4">
+            <div suppressHydrationWarning={true} className="hidden md:flex space-x-4">
               <button onClick={() => router.push("/termsofservice")} className="text-white hover:text-gray-300">
                 Terms and Service
               </button>

@@ -1,6 +1,7 @@
 "use client";
-import React from 'react'
-import { usePathname } from 'next/navigation'
+import React from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const Navigation = () => {
     const navItems = [
@@ -10,14 +11,16 @@ const Navigation = () => {
         { name: 'Constitution', href: '/Constitustion' },
         { name: 'Internship', href: '/pruser/internship' },
         { name: 'Chats', href: '/lawyer/chats' },
-    ]
-    const pathname = usePathname()
+    ];
+
+    const pathname = usePathname();
+
     return (
         <nav>
             <ul className="flex flex-col md:flex-row md:space-x-6 space-y-2 md:space-y-0">
                 {navItems.map((item) => (
                     <li key={item.name}>
-                        <a
+                        <Link
                             href={item.href}
                             className={`block px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                                 pathname === item.href
@@ -26,12 +29,12 @@ const Navigation = () => {
                             }`}
                         >
                             {item.name}
-                        </a>
+                        </Link>
                     </li>
                 ))}
             </ul>
         </nav>
-    )
-}
+    );
+};
 
-export default Navigation
+export default Navigation;

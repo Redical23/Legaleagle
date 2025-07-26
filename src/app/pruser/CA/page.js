@@ -13,7 +13,7 @@ const page = () => {
         </div>
 
         <div className="text-sm text-indigo-200 mt-8">
-          © {new Date().getFullYear()} Your Company Name
+          © {new Date().getFullYear()} KANOONI KARWAYAHI
         </div>
       </div>
     </div>

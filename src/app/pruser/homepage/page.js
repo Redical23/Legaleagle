@@ -13,7 +13,6 @@ const FILTERS = ["All", "Corporate Law", "Immigration Law", "Family Law", "Crimi
 
 function HomepageContent() {
   const searchParams = useSearchParams();
-
   const [users, setUsers] = useState([]);
   const [selectedFilter, setSelectedFilter] = useState("");
   const [page, setPage] = useState(1);
@@ -27,22 +26,23 @@ function HomepageContent() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await fetch(`/api/laywers`, { cache: "no-store" });
+        const res = await fetch(`/api/laywers?onlyNames=true`, { cache: "no-store" });
         const data = await res.json();
-        const allUsers = (data.users || [])
-          .filter(user => user.islaywer === true)
-          .sort((a, b) => (b.subscribe ? 1 : 0) - (a.subscribe ? 1 : 0));
-        setUsers(allUsers);
+        setUsers(data.users || []);
       } catch (error) {
-        console.error("Error fetching users:", error);
+        console.error("Error fetching user data:", error);
       }
     };
     fetchUsers();
   }, []);
 
+  // ✅ Client-side filter by practice area
   const filteredUsers = users.filter(user =>
-    selectedFilter && selectedFilter !== "All" ? user.areasOfPractice.includes(selectedFilter) : true
+    selectedFilter && selectedFilter !== "All"
+      ? user.areasOfPractice?.includes(selectedFilter)
+      : true
   );
+
   const totalPages = Math.ceil(filteredUsers.length / USERS_PER_PAGE);
   const start = (page - 1) * USERS_PER_PAGE;
   const paginatedUsers = filteredUsers.slice(start, start + USERS_PER_PAGE);
@@ -52,7 +52,7 @@ function HomepageContent() {
   }
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-[#020B2C] to-[#0D1B4A] overflow-x-hidden">
+    <div suppressHydrationWarning={true}  className="min-h-screen w-full bg-gradient-to-br from-[#020B2C] to-[#0D1B4A] overflow-x-hidden">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
